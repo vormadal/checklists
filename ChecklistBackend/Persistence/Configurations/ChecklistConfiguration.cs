@@ -19,6 +19,10 @@ public class ChecklistConfiguration : IEntityTypeConfiguration<Checklist>
 
         builder.Property(x => x.CreatedOn).HasDefaultValueSql("NOW()");
         builder.Property(x => x.ModifiedOn).HasDefaultValueSql("NOW()");
+        builder.HasOne(x => x.Owner as ApplicationUser)
+            .WithMany()
+            .HasForeignKey(x => x.OwnerId)
+            .IsRequired(false); //TODO will be later
 
         builder.HasOne(x => x.Template)
             .WithMany()

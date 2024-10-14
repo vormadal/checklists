@@ -3,6 +3,16 @@ using Persistence;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+//TODO allow refresh of tokens to happen without using google
+// this seems relevant https://learn.microsoft.com/en-us/aspnet/core/security/authentication/policyschemes?view=aspnetcore-8.0
+//builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+//{
+//    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+//    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+//});
+
 
 builder.Services
     .AddRepositories(builder.Configuration.GetConnectionString("ChecklistDatabase") ?? throw new Exception("Missing DB connection string"))

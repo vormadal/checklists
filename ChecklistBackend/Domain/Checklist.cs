@@ -8,6 +8,10 @@ public class Checklist
 
     public DateTime ModifiedOn { get; set; }
 
+    public string? OwnerId { get; set; }
+
+    public IApplicationUser? Owner { get; set; }
+
     public string Title { get; set; }
 
     public ICollection<ChecklistItem> Items { get; set; }
